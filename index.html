@@ -3,16 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>main — Desktop Browser 1440 Artboard</title>
+  <title>main — VANTA — SS26 The Atelier Release</title>
   <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-:root {
-  --dk-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --dk-focus-ring: 0 0 0 3px rgba(13, 153, 255, 0.28);
-  --dk-page-bg: #FFFFFF;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Plus%20Jakarta%20Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Bricolage%20Grotesque:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains%20Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+/* DesignKoro Studio — NIRA Luxury Editorial & Kinetic Scroll Motion Stylesheet */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -27,2347 +21,1683 @@ html, body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  overflow-x: clip;
-  background-color: var(--dk-page-bg);
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #FFFFFF;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 .dk-canvas-viewport {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 100%;
-  min-height: 100vh;
-  overflow-x: clip;
-  background-color: var(--dk-page-bg);
+  align-items: center;
+  overflow-x: hidden;
+  background-color: #FFFFFF;
 }
 
 .dk-root-frame {
   width: 100%;
-  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.dk-mobile-menu-btn {
+.dk-artboard-scaler {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.dk-artboard-stage {
+  position: relative;
+  transform-origin: top left;
+  will-change: transform;
+}
+
+/* Parallax & Curtain-Unveil Image Windows */
+.dk-stage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: translate3d(0, var(--dk-parallax-y, 0px), 0) scale(1.02);
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s ease;
+  will-change: transform;
+}
+
+.dk-layer-image:hover .dk-stage-img {
+  transform: translate3d(0, var(--dk-parallax-y, 0px), 0) scale(1.075);
+}
+
+/* 3D Magnetic Hover Cards & Interactive Ritual Steps */
+.dk-layer-card {
+  transform: perspective(1100px) rotateX(var(--dk-tilt-x, 0deg)) rotateY(var(--dk-tilt-y, 0deg));
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.dk-layer-card:hover {
+  transform: perspective(1100px) translateY(-5px) rotateX(var(--dk-tilt-x, 0deg)) rotateY(var(--dk-tilt-y, 0deg));
+}
+
+.dk-step-item {
+  cursor: pointer;
+  transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.36s ease;
+}
+
+.dk-step-item:hover,
+.dk-step-item.dk-step-active {
+  transform: translateX(6px);
+}
+
+/* Infinite Seamless Horizontal Marquee Strip (NIRA Ticker Style) */
+.dk-marquee-strip {
+  overflow: hidden !important;
+  display: flex;
+  align-items: center;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+
+.dk-marquee-track {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  margin-left: auto;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid rgba(15, 23, 42, 0.14);
-  background: rgba(255, 255, 255, 0.94);
-  color: #0F172A;
-  font-size: 20px;
-  cursor: pointer;
+  gap: 36px;
+  white-space: nowrap;
+  will-change: transform;
+  animation: dkMarqueeGlide calc(24s * var(--dk-marquee-rate, 1)) linear infinite;
 }
 
-.dk-sticky-navbar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  transition: background-color 0.24s var(--dk-ease-out), box-shadow 0.24s var(--dk-ease-out);
+.dk-marquee-strip:hover .dk-marquee-track {
+  animation-play-state: paused;
 }
 
-.dk-sticky-navbar.dk-navbar-scrolled {
-  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.14), 0 1px 0 0 rgba(15, 23, 42, 0.06);
+@keyframes dkMarqueeGlide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
-[data-dk-navbar="true"] nav,
-[data-dk-navbar="true"] .dk-interactive-btn:not(.dk-mobile-menu-btn) {
-  display: none;
+/* Word-by-Word Scroll Scrub Illumination (NIRA 00:06 Editorial Refill Copy) */
+.dk-scrub-word {
+  display: inline-block;
+  opacity: 0.24;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
-[data-dk-navbar="true"].dk-mobile-nav-open nav {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-top: 10px;
-}
-
-[data-dk-navbar="true"].dk-mobile-nav-open .dk-interactive-btn:not(.dk-mobile-menu-btn) {
-  display: inline-flex;
+/* Scroll-Linked Rotating Circular Emblem ("RETURN • REFILL • REPEAT") */
+.dk-spin-emblem {
+  transform: rotate(var(--dk-spin-deg, 0deg));
+  transition: transform 0.18s linear;
+  will-change: transform;
 }
 
 .dk-interactive-btn {
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  user-select: none;
-  text-decoration: none;
-  outline: none;
-  transition: transform 0.2s var(--dk-ease-out), box-shadow 0.2s var(--dk-ease-out), filter 0.2s var(--dk-ease-out);
-}
-
-.dk-interactive-btn > * {
-  pointer-events: none;
+  position: absolute;
+  overflow: hidden;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.28s ease, box-shadow 0.28s ease;
 }
 
 .dk-interactive-btn:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.04);
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.06);
 }
 
-.dk-interactive-btn:focus-visible {
-  box-shadow: var(--dk-focus-ring);
+.dk-interactive-btn:active {
+  transform: translateY(0) scale(0.97);
 }
 
+.dk-interactive-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.dk-interactive-link:hover {
+  opacity: 0.72;
+}
+
+/* Choreographed Multi-Variant Entrance Animations */
+@keyframes dkRevealRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes dkRevealCurtain {
+  0% {
+    opacity: 0;
+    clip-path: inset(14% 0 14% 0 round 12px);
+    transform: translate3d(0, 22px, 0) scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0% 0 0% 0 round 0px);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes dkRevealBloom {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes dkRevealEditorialSlide {
+  0% {
+    opacity: 0;
+    transform: translate3d(-22px, 14px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes dkReveal3DTilt {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) translate3d(0, 28px, -20px) rotateX(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) translate3d(0, 0, 0) rotateX(0deg);
+  }
+}
+
+.dk-motion-layer {
+  opacity: 0;
+  animation: dkRevealRise 0.82s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--dk-delay, 0ms);
+}
+
+.dk-motion-layer.dk-fx-curtain {
+  animation-name: dkRevealCurtain;
+  animation-duration: 0.96s;
+}
+
+.dk-motion-layer.dk-fx-bloom {
+  animation-name: dkRevealBloom;
+  animation-duration: 0.78s;
+}
+
+.dk-motion-layer.dk-fx-editorial-slide {
+  animation-name: dkRevealEditorialSlide;
+  animation-duration: 0.84s;
+}
+
+.dk-motion-layer.dk-fx-3d-tilt {
+  animation-name: dkReveal3DTilt;
+  animation-duration: 0.88s;
+}
+
+.dk-motion-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-motion-layer,
+  .dk-marquee-track {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+.dk-vector-node > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Click Ripple & Toast Feedback */
 .dk-ripple-wave {
-  /* Overlay: button press ripple effect */
   position: absolute;
-  border-radius: 50%;
-  width: 64px;
-  height: 64px;
-  background: rgba(255, 255, 255, 0.5);
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.42);
+  transform: translate(-50%, -50%) scale(0);
+  animation: dkRippleExpand 0.58s ease-out forwards;
   pointer-events: none;
-  animation: dkRippleExpand 0.55s var(--dk-ease-out) forwards;
 }
 
 @keyframes dkRippleExpand {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0.45;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(3.8);
+  to {
+    transform: translate(-50%, -50%) scale(18);
     opacity: 0;
   }
 }
 
-.dk-interactive-input {
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: text;
-  outline: none;
-  font-family: inherit;
-  color: #111827;
-  transition: border-color 0.2s var(--dk-ease-out), box-shadow 0.2s var(--dk-ease-out);
-}
-
-.dk-interactive-input::placeholder {
-  color: #6B7280;
-  opacity: 0.85;
-}
-
-.dk-interactive-input:focus {
-  border-color: #0D99FF;
-  box-shadow: var(--dk-focus-ring);
-}
-
-.dk-input-wrapper {
-  display: flex;
-  align-items: center;
-  cursor: text;
-}
-
-.dk-input-wrapper input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  color: inherit;
-  font: inherit;
-  padding: 0 14px;
-}
-
-.dk-interactive-link {
-  cursor: pointer;
-  text-decoration: none;
-  transition: opacity 0.2s var(--dk-ease-out);
-}
-
-.dk-interactive-link:hover {
-  opacity: 0.82;
-}
-
-.dk-interactive-card {
-  transition: transform 0.24s var(--dk-ease-out), box-shadow 0.24s var(--dk-ease-out);
-}
-
-.dk-interactive-card:hover {
-  transform: translateY(-2px);
-}
-
 .dk-toast-notification {
   position: fixed;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
+  bottom: 24px;
+  right: 24px;
   z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
   padding: 12px 18px;
   border-radius: 12px;
   background: rgba(15, 23, 42, 0.94);
   color: #FFFFFF;
   font-size: 13px;
-  font-weight: 500;
-  transform: translateY(16px);
+  font-weight: 600;
+  box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(10px);
   opacity: 0;
+  transform: translateY(12px);
   pointer-events: none;
-  transition: transform 0.24s var(--dk-ease-out), opacity 0.24s var(--dk-ease-out);
+  transition: opacity 0.24s ease, transform 0.24s ease;
 }
 
 .dk-toast-notification.dk-toast-visible {
-  transform: translateY(0);
   opacity: 1;
+  transform: translateY(0);
 }
 
-.dk-main-desktop-browser-1440-artboard-1wspn8m {
-  --dk-design-width: 1440;
+.dk-main-vanta-ss26-the-atelier-release-lvrm0x {
   position: relative;
   width: 100%;
-  max-width: 100%;
-  margin: 0;
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
-  overflow-x: clip;
-  background-color: #FFFFFF;
+  justify-content: center;
+  background-color: #F4F6FB;
+  overflow-x: hidden;
+}
+.dk-main-vanta-ss26-the-atelier-release-lvrm0x .dk-artboard-stage {
+  position: relative;
+  width: 1440px;
+  height: 4320px;
+  background-color: #F4F6FB;
+  border: 1px solid #CBD5E1;
+  overflow: hidden;
 }
 
-.dk-header-navbar-1m3ez7m {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  max-width: 100%;
-  min-height: 80px;
-  z-index: 100;
+.dk-div-section-bg-8nffg9 {
+  position: absolute;
+  left: 80px;
+  top: 792px;
+  width: 1280px;
+  height: 540px;
+  z-index: 0;
+  box-sizing: border-box;
+  background-color: #0A0B0D;
+  border: 1px solid #0F172A;
+}
+
+.dk-div-section-bg-7tgmdc {
+  position: absolute;
+  left: 0px;
+  top: 4000px;
+  width: 1440px;
+  height: 320px;
+  z-index: 1;
+  box-sizing: border-box;
+  background-color: #0A0B0D;
+  border: 1px solid #0A0B0D;
+}
+
+.dk-div-section-bg-8xf158 {
+  position: absolute;
+  left: 80px;
+  top: 3052px;
+  width: 620px;
+  height: 620px;
+  z-index: 2;
+  box-sizing: border-box;
+  background-color: #0A0B0D;
+  border: 1px solid #0F172A;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dk-div-section-bg-8dftra {
+  position: absolute;
+  left: 80px;
+  top: 1578px;
+  width: 710px;
+  height: 540px;
+  z-index: 3;
+  box-sizing: border-box;
+  background-color: #14110F;
+  border: 1px solid #2D3039;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dk-div-section-bg-9rdu85 {
+  position: absolute;
+  left: 80px;
+  top: 3756px;
+  width: 1280px;
+  height: 188px;
+  z-index: 4;
+  box-sizing: border-box;
+  background-color: #0F172A;
+  border: 1px solid #0F172A;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dk-div-section-bg-1l2u5iu {
+  position: absolute;
+  left: 732px;
+  top: 3052px;
+  width: 628px;
+  height: 294px;
+  z-index: 5;
+  box-sizing: border-box;
+  background-color: #14110F;
+  border: 1px solid #2D3039;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dk-div-section-bg-1lctr7t {
+  position: absolute;
+  left: 732px;
+  top: 3378px;
+  width: 628px;
+  height: 294px;
+  z-index: 6;
+  box-sizing: border-box;
+  background-color: #F8FAFC;
+  border: 1px solid #0F172A;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dk-div-section-bg-9he8j6 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1440px;
+  height: 88px;
+  z-index: 7;
+  box-sizing: border-box;
+  background-color: #F4F6FB;
+  border: 1px solid #2D3039;
+}
+
+.dk-div-card-surface-97emu7 {
+  position: absolute;
+  left: 838px;
+  top: 1674px;
+  width: 522px;
+  height: 480px;
+  z-index: 108;
+  box-sizing: border-box;
+  background-color: #F8FAFC;
+  border: 1px solid #0F172A;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dk-div-card-surface-1ksujtv {
+  position: absolute;
+  left: 440px;
+  top: 2381px;
+  width: 560px;
+  height: 290px;
+  z-index: 109;
+  box-sizing: border-box;
+  background-color: #14110F;
+  border: 1px solid #0F172A;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dk-div-card-surface-1kiuy4w {
+  position: absolute;
+  left: 908px;
+  top: 902px;
+  width: 408px;
+  height: 390px;
+  z-index: 110;
+  box-sizing: border-box;
+  background-color: #14110F;
+  border: 1px solid #0F172A;
+}
+
+.dk-div-card-surface-abd1m3 {
+  position: absolute;
+  left: 80px;
+  top: 116px;
+  width: 176px;
+  height: 560px;
+  z-index: 111;
+  box-sizing: border-box;
+  background-color: #14110F;
+  border: 1px solid #0F172A;
+}
+
+.dk-div-card-surface-a1dfx4 {
+  position: absolute;
+  left: 324px;
+  top: 508px;
+  width: 500px;
+  height: 196px;
+  z-index: 112;
+  box-sizing: border-box;
+  background-color: #0A0B0D;
+  border: 1px solid #0F172A;
+}
+
+.dk-img-hero-experimental-pr-1lmtcws {
+  position: absolute;
+  left: 820px;
+  top: 218px;
+  width: 540px;
+  height: 420px;
+  z-index: 213;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.dk-img-hero-experimental-se-1lwsylr {
+  position: absolute;
+  left: 288px;
+  top: 238px;
+  width: 360px;
+  height: 270px;
+  z-index: 214;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.dk-img-experimental-collage-1m6skaq {
+  position: absolute;
+  left: 124px;
+  top: 1002px;
+  width: 380px;
+  height: 290px;
+  z-index: 215;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.dk-img-experimental-collage-1mgs5zp {
+  position: absolute;
+  left: 536px;
+  top: 962px;
+  width: 340px;
+  height: 330px;
+  z-index: 216;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.dk-img-experimental-collage-1mqrroo {
+  position: absolute;
+  left: 932px;
+  top: 926px;
+  width: 360px;
+  height: 170px;
+  z-index: 217;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.dk-img-asymmetric-feature-0-1n0rddn {
+  position: absolute;
+  left: 104px;
+  top: 1602px;
+  width: 662px;
+  height: 360px;
+  z-index: 218;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dk-img-asymmetric-feature-0-1pix94b {
+  position: absolute;
+  left: 858px;
+  top: 1694px;
+  width: 482px;
+  height: 290px;
+  z-index: 219;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.dk-img-campaign-diptych-lef-1p8xnfc {
+  position: absolute;
+  left: 0px;
+  top: 2246px;
+  width: 720px;
+  height: 560px;
+  z-index: 220;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.dk-img-campaign-diptych-rig-1q2wgi9 {
+  position: absolute;
+  left: 720px;
+  top: 2246px;
+  width: 720px;
+  height: 560px;
+  z-index: 221;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.dk-img-lookbook-plate-01-ta-1pswuta {
+  position: absolute;
+  left: 98px;
+  top: 3070px;
+  width: 584px;
+  height: 502px;
+  z-index: 222;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dk-img-lookbook-plate-02-ph-1qmvnw7 {
+  position: absolute;
+  left: 752px;
+  top: 3072px;
+  width: 260px;
+  height: 254px;
+  z-index: 223;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dk-img-lookbook-plate-03-ph-1qcw278 {
+  position: absolute;
+  left: 752px;
+  top: 3398px;
+  width: 260px;
+  height: 254px;
+  z-index: 224;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dk-input-enter-the-release-1r6uva5 {
+  position: absolute;
+  left: 1160px;
+  top: 22px;
+  width: 200px;
+  height: 44px;
+  z-index: 325;
+  box-sizing: border-box;
+  background-color: #0F172A;
+  border: 1.5px solid #0F172A;
+  border-radius: 999px;
+  overflow: hidden;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 12px 16px;
-  background-color: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.dk-nav-container-lu2xrw {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 1188px;
-  margin-inline: auto;
+.dk-input-enter-1qwv9l6 {
+  position: absolute;
+  left: 100px;
+  top: 600px;
+  width: 136px;
+  height: 48px;
+  z-index: 326;
+  box-sizing: border-box;
+  background-color: #0F172A;
+  border: 1.5px solid #0F172A;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 16px 16px 16px 16px;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.dk-div-row-6m6w07 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
+.dk-input-enter-the-release-1nb0fkj {
+  position: absolute;
+  left: 352px;
+  top: 638px;
+  width: 216px;
+  height: 44px;
+  z-index: 327;
+  box-sizing: border-box;
+  background-color: #0F172A;
+  border: 1.5px solid #0F172A;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.dk-div-section-bg-18e5okd {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
+.dk-button-book-an-atelier-fitting-1n10tvk {
+  position: absolute;
+  left: 582px;
+  top: 638px;
+  width: 196px;
+  height: 44px;
+  z-index: 328;
+  box-sizing: border-box;
+  background-color: #14110F;
+  border: 1.5px solid #2D3039;
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: stretch;
-  padding: 27px 16px 27px 16px;
-  background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.dk-nav-links-left-17na91l {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-button-explore-capsule-1nuwhgi {
+  position: absolute;
+  left: 932px;
+  top: 1224px;
+  width: 190px;
+  height: 44px;
+  z-index: 329;
+  box-sizing: border-box;
+  background-color: #0F172A;
+  border: 1.5px solid #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dk-button-acquire-piece-1o4w35h {
+  position: absolute;
+  left: 594px;
+  top: 2044px;
+  width: 168px;
+  height: 46px;
+  z-index: 330;
+  box-sizing: border-box;
+  background-color: #0F172A;
+  border: 1.5px solid #0F172A;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dk-button-view-campaign-film-1naxa2k {
+  position: absolute;
+  left: 610px;
+  top: 2603px;
+  width: 220px;
+  height: 44px;
+  z-index: 331;
+  box-sizing: border-box;
+  background-color: #0F172A;
+  border: 1.5px solid #0F172A;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dk-button-view-piece-1nkwvrj {
+  position: absolute;
+  left: 1188px;
+  top: 3280px;
+  width: 148px;
+  height: 42px;
+  z-index: 332;
+  box-sizing: border-box;
+  background-color: #0F172A;
+  border: 1.5px solid #0F172A;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dk-button-view-piece-1mqy2om {
+  position: absolute;
+  left: 1188px;
+  top: 3606px;
+  width: 148px;
+  height: 42px;
+  z-index: 333;
+  box-sizing: border-box;
+  background-color: #0F172A;
+  border: 1.5px solid #0F172A;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dk-input-enter-the-release-1n0xodl {
+  position: absolute;
+  left: 1064px;
+  top: 3822px;
+  width: 248px;
+  height: 56px;
+  z-index: 334;
+  box-sizing: border-box;
+  background-color: #0A0B0D;
+  border: 1.5px solid #0A0B0D;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dk-a-brand-vanta-1m6yvao {
+  position: absolute;
+  left: 80px;
+  top: 28px;
+  width: 260px;
+  min-height: 39px;
+  z-index: 435;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-brand-logo-6tk437 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
+.dk-a-nav-link-available-for-q2-commis-1mgygzn {
+  position: absolute;
+  left: 356px;
+  top: 34px;
+  width: 310px;
+  min-height: 23px;
+  z-index: 436;
+  box-sizing: border-box;
   color: #0F172A;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 18px;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-nav-links-right-11tbi9v {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-a-nav-link-products-about-us-journa-1q2tb0a {
+  position: absolute;
+  left: 740px;
+  top: 33px;
+  width: 390px;
+  min-height: 27px;
+  z-index: 437;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.45;
   text-align: right;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-hdr-03-image-left-text-right-8x7g50 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #FFFFFF;
-  border-radius: 16px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-hero-visual-product-preview-16-10-9fjbml {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  aspect-ratio: 512 / 352;
-  height: auto;
-  object-fit: cover;
-  display: block;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-image: url("https://images.pexels.com/photos/7151031/pexels-photo-7151031.jpeg?auto=compress&cs=tinysrgb&h=650&w=940");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 16px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-eyebrow-badge-wvxq1l {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 0px 12px 0px 0px;
-  background-color: #F1F5F9;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-eyebrow-1f7ssau {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-p-index-01-edition-2027-1qcswp9 {
+  position: absolute;
+  left: 100px;
+  top: 144px;
+  width: 136px;
+  min-height: 260px;
+  z-index: 438;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
   font-size: 12px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-hero-title-1ctq6lx {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(20px, 2.50vw, 36px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-hero-lead-1450byg {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.45;
+.dk-h1-cloth-that-holds-the-roo-tcfv99 {
+  position: absolute;
+  left: 288px;
+  top: 116px;
+  width: 1072px;
+  min-height: 88px;
+  z-index: 439;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 68px;
+  font-weight: 800;
+  line-height: 1.18;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-button-start-building-qh7ema {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 46px;
-  padding: 10px 20px;
-  background-color: #111827;
-  border-radius: 10px;
-  border: none;
-}
-
-.dk-button-label-152yptq {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
+.dk-p-vanta-is-an-independent-t2g9ka {
+  position: absolute;
+  left: 352px;
+  top: 532px;
+  width: 444px;
+  min-height: 95px;
+  z-index: 440;
+  box-sizing: border-box;
   color: #FFFFFF;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-button-view-live-demo-8uxesc {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 46px;
-  padding: 10px 20px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-button-label-1256r70 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-lay-04-bento-grid-6-tile-feature-mosaic-7szeig {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #FFFFFF;
-  border-radius: 16px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-bento-heading-amjvj2 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(16px, 1.67vw, 24px);
-  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-bento-hero-tile-59zj8p {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F8FAFC;
-  border-radius: 16px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-tile-1-title-15g54rx {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #707071;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-token-preview-x6kl1 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-image: url("https://images.pexels.com/photos/13248795/pexels-photo-13248795.jpeg?auto=compress&cs=tinysrgb&h=650&w=940");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 12px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-media-tag-bo30tv {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-media-label-imy19c {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-p-01-avant-garde-spatia-ssgnvb {
+  position: absolute;
+  left: 124px;
+  top: 828px;
+  width: 520px;
+  min-height: 23px;
+  z-index: 441;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
   font-size: 12px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-tile-1-copy-11i6c2y {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
+  font-weight: 800;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-bento-top-right-tile-oevch3 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  border-radius: 16px;
+.dk-h1-deconstructing-silhouett-sih26c {
+  position: absolute;
+  left: 124px;
+  top: 860px;
+  width: 760px;
+  min-height: 120px;
+  z-index: 442;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.18;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
 }
 
-.dk-tile-2-kicker-12ndi0r {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
+.dk-h3-archive-capsule-04-s8hghd {
+  position: absolute;
+  left: 932px;
+  top: 1116px;
+  width: 360px;
+  min-height: 36px;
+  z-index: 443;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-p-limited-numbered-release-ryhuse {
+  position: absolute;
+  left: 932px;
+  top: 1158px;
+  width: 360px;
+  min-height: 56px;
+  z-index: 444;
+  box-sizing: border-box;
   color: #94A3B8;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-tile-2-value-duh53d {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
+.dk-p-02-sculptural-objects-roi93f {
+  position: absolute;
+  left: 80px;
+  top: 1424px;
+  width: 520px;
+  min-height: 24px;
+  z-index: 445;
+  box-sizing: border-box;
   color: #0F172A;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(20px, 2.50vw, 36px);
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-tile-2-desc-wrg7mo {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #0F172A;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-bento-bottom-left-tile-1qrx50v {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F8FAFC;
-  border-radius: 16px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-tile-3-title-54vscp {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-tile-3-copy-1q8b3lg {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-bento-bottom-right-span-1ws13em {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F8FAFC;
-  border-radius: 16px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-tile-4-title-18r4pgr {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-tile-4-copy-102sqft {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-button-try-live-export-1tswalx {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 44px;
-  padding: 10px 20px;
-  background-color: #111827;
-  border-radius: 10px;
-  border: none;
-}
-
-.dk-button-label-1jahcds {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #FFFFFF;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-ftr-02-four-column-capability-matrix-1kyuulr {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  align-items: stretch;
-  padding: 20px 0px 0px 0px;
-  background-color: #FFFFFF;
-  border-radius: 16px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-category-badge-7w5bz9 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 0px 12px 0px 0px;
-  background-color: #F1F5F9;
-  border-radius: 6px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-category-code-1fdk1br {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-button-customize-block-12q3noj {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
+.dk-h1-architectural-footwear-reineg {
+  position: absolute;
+  left: 80px;
+  top: 1454px;
+  width: 840px;
+  min-height: 99px;
+  z-index: 446;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.18;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-span-badge-01-outerwear-r4j1ph {
+  position: absolute;
+  left: 108px;
+  top: 1980px;
+  width: 420px;
+  min-height: 23px;
+  z-index: 447;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-h3-small-run-12-pieces-qujg0i {
+  position: absolute;
+  left: 610px;
+  top: 1978px;
+  width: 152px;
+  min-height: 66px;
+  z-index: 448;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: right;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-h2-the-room-jacket-rof3lg {
+  position: absolute;
+  left: 108px;
+  top: 2009px;
+  width: 460px;
   min-height: 42px;
-  padding: 10px 20px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-button-label-1o1oh7x {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-section-title-1u2ao18 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(16px, 1.67vw, 24px);
-  font-weight: 700;
+  z-index: 449;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-section-subtitle-s9pins {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #64748B;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-p-unlined-wool-cashmere-cu-ryepaf {
+  position: absolute;
+  left: 108px;
+  top: 2054px;
+  width: 460px;
+  min-height: 69px;
+  z-index: 450;
+  box-sizing: border-box;
+  color: #94A3B8;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-four-column-capability-matrix-card-1-1iif9w3 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 18px 16px;
-  background-color: #F8FAFC;
-  border-radius: 14px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-ftr-02-preview-01-127zx93 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F1F5F9;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-media-tag-1ta0p7u {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-media-label-i6499v {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-card-title-1x26yvv {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-p-curatorial-thesis-ever-s8eaze {
+  position: absolute;
+  left: 838px;
+  top: 1586px;
+  width: 522px;
+  min-height: 74px;
+  z-index: 451;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-card-description-1qrrscr {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-button-view-details-12ijbrn {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-button-label-1cejhd8 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-four-column-capability-matrix-card-2-18de1lv {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 18px 16px;
-  background-color: #F8FAFC;
-  border-radius: 14px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-ftr-02-preview-02-1pcwrjd {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F1F5F9;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-media-tag-2i8i8t {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-media-label-1axje4s {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-span-badge-02-jersey-tees-sidwod {
+  position: absolute;
+  left: 862px;
+  top: 2002px;
+  width: 382px;
+  min-height: 23px;
+  z-index: 452;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
   font-size: 12px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-card-title-6zdsp6 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-card-description-1v84cec {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
+.dk-h3-restocked-in-three-colou-qkgotk {
+  position: absolute;
+  left: 1230px;
+  top: 2000px;
+  width: 106px;
+  min-height: 86px;
+  z-index: 453;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: right;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-h2-atelier-tee-no-1-qugaij {
+  position: absolute;
+  left: 862px;
+  top: 2092px;
+  width: 474px;
+  min-height: 36px;
+  z-index: 454;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-button-view-details-1hf8uwm {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
-  background-color: #111827;
-  border-radius: 10px;
-  border: none;
-}
-
-.dk-button-label-qdvxzz {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #FFFFFF;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-four-column-capability-matrix-card-3-1lk2f12 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 18px 16px;
-  background-color: #F8FAFC;
-  border-radius: 14px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-ftr-02-preview-03-10ppwvt {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F1F5F9;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-media-tag-hxp4nt {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-media-label-1yt06ya {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-card-title-ag1bog {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-card-description-qy6qrc {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-button-view-details-kg5hfl {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-button-label-fgqrlx {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-four-column-capability-matrix-card-4-10j0iv4 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 18px 16px;
-  background-color: #F8FAFC;
-  border-radius: 14px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-ftr-02-preview-04-iewftz {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F1F5F9;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-media-tag-asvskc {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-media-label-16iq4xo {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-card-title-spg0vd {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-card-description-kprt55 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-button-view-details-hsw5ul {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-button-label-13jc43y {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-ftr-04-numbered-process-steps-01-04-ruhaam {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #FFFFFF;
-  border-radius: 16px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-category-badge-hljj8w {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 0px 12px 0px 0px;
-  background-color: #F1F5F9;
-  border-radius: 6px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-category-code-iuxkq {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-button-customize-block-1nnq55y {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-button-label-1wenzrj {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-section-title-ft0scf {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(16px, 1.67vw, 24px);
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-section-subtitle-1rsjfbe {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #64748B;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-p-tubular-knit-long-staple-r4fw7i {
+  position: absolute;
+  left: 862px;
+  top: 2134px;
+  width: 474px;
+  min-height: 69px;
+  z-index: 455;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-numbered-process-steps-01-04-card-1-11uxhdn {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 18px 16px;
-  background-color: #F8FAFC;
-  border-radius: 14px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-ftr-04-preview-01-z30ngk {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F1F5F9;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-media-tag-7qfaea {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-media-label-12gv1cy {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-p-03-visual-campaign-dip-refhwh {
+  position: absolute;
+  left: 476px;
+  top: 2413px;
+  width: 488px;
+  min-height: 23px;
+  z-index: 456;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 1.45;
   text-align: center;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-card-title-pc67b {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
+.dk-h2-form-shadow-motion-ac-pgia1o {
+  position: absolute;
+  left: 476px;
+  top: 2445px;
+  width: 488px;
+  min-height: 81px;
+  z-index: 457;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.18;
+  text-align: center;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-card-description-1g54gy6 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-button-view-details-1l8zj41 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-button-label-1g0idvc {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
+.dk-p-photographed-on-120mm-me-pqhvqn {
+  position: absolute;
+  left: 484px;
+  top: 2532px;
+  width: 472px;
+  min-height: 52px;
+  z-index: 458;
+  box-sizing: border-box;
+  color: #94A3B8;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.45;
   text-align: center;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-numbered-process-steps-01-04-card-2-1urhkr0 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 18px 16px;
-  background-color: #F8FAFC;
-  border-radius: 14px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-ftr-04-preview-02-38309v {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F1F5F9;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-media-tag-1czvx2q {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-media-label-1v13xol {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-p-04-seasonal-lookbook-1nbf967 {
+  position: absolute;
+  left: 80px;
+  top: 2898px;
+  width: 520px;
+  min-height: 24px;
+  z-index: 459;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
   font-size: 12px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-card-title-lfrv57 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-card-description-bjus0e {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
+.dk-h1-signature-editions-edi-1n1fnh8 {
+  position: absolute;
+  left: 80px;
+  top: 2928px;
+  width: 840px;
+  min-height: 99px;
+  z-index: 460;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.18;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-span-badge-01-outerwear-1nvegk5 {
+  position: absolute;
+  left: 104px;
+  top: 3590px;
+  width: 360px;
+  min-height: 23px;
+  z-index: 461;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
   line-height: 1.45;
   text-align: left;
-  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-button-view-details-1i0h8tj {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
-  background-color: #111827;
-  border-radius: 10px;
-  border: none;
-}
-
-.dk-button-label-1b9mmma {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
+.dk-h2-the-room-jacket-1nleuv6 {
+  position: absolute;
+  left: 104px;
+  top: 3619px;
+  width: 410px;
+  min-height: 36px;
+  z-index: 462;
+  box-sizing: border-box;
   color: #FFFFFF;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
   line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-numbered-process-steps-01-04-card-3-2lslkc {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 18px 16px;
-  background-color: #F8FAFC;
-  border-radius: 14px;
-  border: 1px solid #E2E8F0;
+.dk-h3-small-run-12-pieces-1m7gueb {
+  position: absolute;
+  left: 516px;
+  top: 3618px;
+  width: 160px;
+  min-height: 60px;
+  z-index: 463;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: right;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
 }
 
-.dk-ftr-04-preview-03-8fcd8t {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F1F5F9;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-media-tag-1ik4j5x {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-media-label-eazb3v {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-span-badge-02-jersey-tees-1lxh8pc {
+  position: absolute;
+  left: 1036px;
+  top: 3082px;
+  width: 300px;
+  min-height: 23px;
+  z-index: 464;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-card-title-1vbfhq1 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+.dk-h2-atelier-tee-no-1-1mrg1s9 {
+  position: absolute;
+  left: 1036px;
+  top: 3111px;
+  width: 300px;
+  min-height: 56px;
+  z-index: 465;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-p-tubular-knit-long-staple-1mhgg3a {
+  position: absolute;
+  left: 1036px;
+  top: 3174px;
+  width: 300px;
+  min-height: 89px;
+  z-index: 466;
+  box-sizing: border-box;
+  color: #94A3B8;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-h3-restocked-in-three-colou-1pjc2pz {
+  position: absolute;
+  left: 1036px;
+  top: 3288px;
+  width: 150px;
+  min-height: 82px;
+  z-index: 467;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
   font-size: 16px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-span-badge-03-eyewear-1p9ch10 {
+  position: absolute;
+  left: 1036px;
+  top: 3408px;
+  width: 300px;
+  min-height: 23px;
+  z-index: 468;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-h2-sable-frame-m4tcpy {
+  position: absolute;
+  left: 1036px;
+  top: 3437px;
+  width: 300px;
+  min-height: 56px;
+  z-index: 469;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-p-hand-polished-acetate-fr-mesyex {
+  position: absolute;
+  left: 1036px;
+  top: 3500px;
+  width: 300px;
+  min-height: 89px;
+  z-index: 470;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-h3-edition-of-40-lku5c0 {
+  position: absolute;
+  left: 1036px;
+  top: 3614px;
+  width: 150px;
+  min-height: 32px;
+  z-index: 471;
+  box-sizing: border-box;
+  color: #0F172A;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-p-ready-for-your-next-ch-lutr0z {
+  position: absolute;
+  left: 128px;
+  top: 3792px;
+  width: 520px;
+  min-height: 23px;
+  z-index: 472;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-h1-book-the-atelier-fitting-n8rrhu {
+  position: absolute;
+  left: 128px;
+  top: 3822px;
+  width: 780px;
+  min-height: 78px;
+  z-index: 473;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.18;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
+  margin: 0;
+}
+
+.dk-p-products-about-us-jo-nird6t {
+  position: absolute;
+  left: 80px;
+  top: 4042px;
+  width: 1280px;
+  min-height: 26px;
+  z-index: 474;
+  box-sizing: border-box;
+  color: #F8FAFC;
+  font-family: 'JetBrains Mono', 'Inter', sans-serif;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
+  text-align: center;
+  white-space: nowrap;
+  overflow-wrap: break-word;
+  overflow: hidden;
   margin: 0;
 }
 
-.dk-card-description-1fs14vx {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
+.dk-h3-vanta-mosk3w {
+  position: absolute;
+  left: 80px;
+  top: 4092px;
+  width: 1280px;
+  min-height: 120px;
+  z-index: 475;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1.18;
+  text-align: center;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: visible;
   margin: 0;
 }
 
-.dk-button-view-details-bb81ex {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-button-label-1w5as8m {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
+.dk-p-2027-vanta-all-rights-mys5sv {
+  position: absolute;
+  left: 80px;
+  top: 4252px;
+  width: 1280px;
+  min-height: 26px;
+  z-index: 476;
+  box-sizing: border-box;
+  color: #94A3B8;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.45;
   text-align: center;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+  overflow-wrap: break-word;
+  overflow: hidden;
   margin: 0;
-}
-
-.dk-numbered-process-steps-01-04-card-4-bjqifj {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  padding: 20px 16px 18px 16px;
-  background-color: #F8FAFC;
-  border-radius: 14px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-ftr-04-preview-04-ylw2b0 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  padding: 20px 16px 24px 16px;
-  background-color: #F1F5F9;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-media-tag-1cwt8mw {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: stretch;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-}
-
-.dk-media-label-yzmhda {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-card-title-v8gvzm {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-card-description-1irqgo8 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #475569;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.45;
-  text-align: left;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-.dk-button-view-details-1ru9oi5 {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  min-height: 42px;
-  padding: 10px 20px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #CBD5E1;
-}
-
-.dk-button-label-1tdp13t {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  color: #111827;
-  font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-  overflow-wrap: anywhere;
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .dk-mobile-menu-btn {
-    display: none;
-  }
-  [data-dk-navbar="true"] nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: auto;
-  }
-  [data-dk-navbar="true"] .dk-interactive-btn:not(.dk-mobile-menu-btn) {
-    display: inline-flex;
-  }
-  .dk-toast-notification {
-    left: auto;
-    right: 24px;
-    bottom: 24px;
-  }
-  .dk-header-navbar-1m3ez7m {
-    padding: 14px 32px;
-  }
-  .dk-nav-container-lu2xrw {
-    padding: 16px 16px 16px 16px;
-  }
-  .dk-div-section-bg-18e5okd {
-    padding: 27px 32px 27px 32px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 48px;
-  }
-  .dk-hdr-03-image-left-text-right-8x7g50 {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-eyebrow-badge-wvxq1l {
-    padding: 0px 12px 0px 0px;
-  }
-  .dk-lay-04-bento-grid-6-tile-feature-mosaic-7szeig {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-bento-hero-tile-59zj8p {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-token-preview-x6kl1 {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-bento-top-right-tile-oevch3 {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-bento-bottom-left-tile-1qrx50v {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-bento-bottom-right-span-1ws13em {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-ftr-02-four-column-capability-matrix-1kyuulr {
-    padding: 20px 0px 0px 0px;
-  }
-  .dk-category-badge-7w5bz9 {
-    padding: 0px 12px 0px 0px;
-  }
-  .dk-four-column-capability-matrix-card-1-1iif9w3 {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-02-preview-01-127zx93 {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-four-column-capability-matrix-card-2-18de1lv {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-02-preview-02-1pcwrjd {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-four-column-capability-matrix-card-3-1lk2f12 {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-02-preview-03-10ppwvt {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-four-column-capability-matrix-card-4-10j0iv4 {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-02-preview-04-iewftz {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-ftr-04-numbered-process-steps-01-04-ruhaam {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-category-badge-hljj8w {
-    padding: 0px 12px 0px 0px;
-  }
-  .dk-numbered-process-steps-01-04-card-1-11uxhdn {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-04-preview-01-z30ngk {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-numbered-process-steps-01-04-card-2-1urhkr0 {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-04-preview-02-38309v {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-numbered-process-steps-01-04-card-3-2lslkc {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-04-preview-03-8fcd8t {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-numbered-process-steps-01-04-card-4-bjqifj {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-04-preview-04-ylw2b0 {
-    padding: 20px 18px 24px 18px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .dk-header-navbar-1m3ez7m {
-    padding: 0px 0px;
-  }
-  .dk-nav-container-lu2xrw {
-    padding: 16px 16px 16px 16px;
-  }
-  .dk-div-section-bg-18e5okd {
-    padding: 27px 64px 27px 64px;
-  }
-  .dk-hdr-03-image-left-text-right-8x7g50 {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-hero-visual-product-preview-16-10-9fjbml {
-    max-width: 512px;
-  }
-  .dk-eyebrow-badge-wvxq1l {
-    padding: 0px 12px 0px 0px;
-  }
-  .dk-lay-04-bento-grid-6-tile-feature-mosaic-7szeig {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-bento-hero-tile-59zj8p {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-token-preview-x6kl1 {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-bento-top-right-tile-oevch3 {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-bento-bottom-left-tile-1qrx50v {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-bento-bottom-right-span-1ws13em {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-ftr-02-four-column-capability-matrix-1kyuulr {
-    padding: 20px 0px 0px 0px;
-  }
-  .dk-category-badge-7w5bz9 {
-    padding: 0px 12px 0px 0px;
-  }
-  .dk-four-column-capability-matrix-card-1-1iif9w3 {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-02-preview-01-127zx93 {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-four-column-capability-matrix-card-2-18de1lv {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-02-preview-02-1pcwrjd {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-four-column-capability-matrix-card-3-1lk2f12 {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-02-preview-03-10ppwvt {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-four-column-capability-matrix-card-4-10j0iv4 {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-02-preview-04-iewftz {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-ftr-04-numbered-process-steps-01-04-ruhaam {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-category-badge-hljj8w {
-    padding: 0px 12px 0px 0px;
-  }
-  .dk-numbered-process-steps-01-04-card-1-11uxhdn {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-04-preview-01-z30ngk {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-numbered-process-steps-01-04-card-2-1urhkr0 {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-04-preview-02-38309v {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-numbered-process-steps-01-04-card-3-2lslkc {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-04-preview-03-8fcd8t {
-    padding: 20px 18px 24px 18px;
-  }
-  .dk-numbered-process-steps-01-04-card-4-bjqifj {
-    padding: 20px 18px 18px 18px;
-  }
-  .dk-ftr-04-preview-04-ylw2b0 {
-    padding: 20px 18px 24px 18px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
 }
 
   </style>
@@ -2380,182 +1710,132 @@ html, body {
        ========================================================================== -->
   <div id="root">
   <main class="dk-canvas-viewport">
-    <section id="main-desktop-browser-1440-artboard-1wspn8m" class="dk-root-frame dk-main-desktop-browser-1440-artboard-1wspn8m" data-dk-root-frame="true" data-frame-id="frame-1795675418288" data-frame-name="main — Desktop Browser 1440 Artboard">
-      <header data-dk-navbar="true" class="dk-sticky-navbar dk-header-navbar-1m3ez7m">
-        <nav class="dk-nav-container-lu2xrw">
-          <div class="dk-div-row-6m6w07">
-</div>
-        </nav>
-        <div class="dk-div-section-bg-18e5okd">
-          <p class="dk-nav-links-left-17na91l">Products     Solutions     Pricing</p>
-          <a href="#brand-studio" class="dk-interactive-link dk-brand-logo-6tk437">BRAND STUDIO</a>
-          <a href="#about" class="dk-interactive-link dk-nav-links-right-11tbi9v">Docs     Company     Sign In</a>
+    <section id="main-vanta-ss26-the-atelier-release" data-dk-root-frame="true" data-frame-id="ai_wf_frame_1795607274122_62225" data-frame-name="main — VANTA — SS26 The Atelier Release" data-design-width="1440" data-design-height="4320" class="dk-root-frame dk-main-vanta-ss26-the-atelier-release-lvrm0x">
+      <div class="dk-artboard-scaler" style="width:1440px;height:4320px">
+        <div class="dk-artboard-stage">
+        <div class="dk-div-section-bg-8nffg9"></div>
+        <div class="dk-div-section-bg-7tgmdc"></div>
+        <div class="dk-div-section-bg-8xf158"></div>
+        <div class="dk-div-section-bg-8dftra"></div>
+        <div class="dk-div-section-bg-9rdu85"></div>
+        <div class="dk-div-section-bg-1l2u5iu"></div>
+        <div class="dk-div-section-bg-1lctr7t"></div>
+        <div class="dk-div-section-bg-9he8j6"></div>
+        <div class="dk-div-card-surface-97emu7 dk-motion-layer dk-fx-3d-tilt dk-layer-card" style="--dk-delay: 117ms"></div>
+        <div class="dk-div-card-surface-1ksujtv dk-motion-layer dk-fx-3d-tilt dk-layer-card" style="--dk-delay: 185ms"></div>
+        <div class="dk-div-card-surface-1kiuy4w dk-motion-layer dk-fx-3d-tilt dk-layer-card" style="--dk-delay: 142ms"></div>
+        <div class="dk-div-card-surface-abd1m3 dk-motion-layer dk-fx-3d-tilt dk-layer-card" style="--dk-delay: 134ms"></div>
+        <div class="dk-div-card-surface-a1dfx4 dk-motion-layer dk-fx-3d-tilt dk-layer-card" style="--dk-delay: 186ms"></div>
+        <div class="dk-img-hero-experimental-pr-1lmtcws dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 203ms"><img src="https://images.pexels.com/photos/3414716/pexels-photo-3414716.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Hero / Experimental Pr)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-hero-experimental-se-1lwsylr dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 12ms"><img src="https://images.pexels.com/photos/4614224/pexels-photo-4614224.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Hero / Experimental Se)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-experimental-collage-1m6skaq dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 83ms"><img src="https://images.pexels.com/photos/36397420/pexels-photo-36397420.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Experimental Collage /)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-experimental-collage-1mgs5zp dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 113ms"><img src="https://images.pexels.com/photos/13211184/pexels-photo-13211184.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Experimental Collage /)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-experimental-collage-1mqrroo dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 143ms"><img src="https://images.pexels.com/photos/18767178/pexels-photo-18767178.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Experimental Collage /)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-asymmetric-feature-0-1n0rddn dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 210ms"><img src="https://images.pexels.com/photos/36397420/pexels-photo-36397420.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Asymmetric / Feature 0)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-asymmetric-feature-0-1pix94b dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 246ms"><img src="https://images.pexels.com/photos/4614224/pexels-photo-4614224.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Asymmetric / Feature 0)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-campaign-diptych-lef-1p8xnfc dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 306ms"><img src="https://images.pexels.com/photos/13211184/pexels-photo-13211184.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Campaign Diptych / Lef)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-campaign-diptych-rig-1q2wgi9 dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 114ms"><img src="https://images.pexels.com/photos/18767178/pexels-photo-18767178.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Campaign Diptych / Rig)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-lookbook-plate-01-ta-1pswuta dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 188ms"><img src="https://images.pexels.com/photos/36397420/pexels-photo-36397420.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Lookbook / Plate 01 Ta)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-lookbook-plate-02-ph-1qmvnw7 dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 220ms"><img src="https://images.pexels.com/photos/4614224/pexels-photo-4614224.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Lookbook / Plate 02 Ph)" class="dk-stage-img" loading="lazy" /></div>
+        <div class="dk-img-lookbook-plate-03-ph-1qcw278 dk-motion-layer dk-fx-curtain dk-layer-image" style="--dk-delay: 269ms"><img src="https://images.pexels.com/photos/13211184/pexels-photo-13211184.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=650&amp;w=940" alt="img (Lookbook / Plate 03 Ph)" class="dk-stage-img" loading="lazy" /></div>
+        <button type="button" data-dk-action="Enter the release" class="dk-input-enter-the-release-1r6uva5 dk-motion-layer dk-fx-rise dk-interactive-btn" style="--dk-delay: 129ms">Enter the release</button>
+        <button type="button" data-dk-action="ENTER ↗" class="dk-input-enter-1qwv9l6 dk-motion-layer dk-fx-curtain dk-interactive-btn" style="--dk-delay: 191ms">ENTER ↗</button>
+        <button type="button" data-dk-action="ENTER THE RELEASE" class="dk-input-enter-the-release-1nb0fkj dk-motion-layer dk-fx-bloom dk-interactive-btn" style="--dk-delay: 224ms">ENTER THE RELEASE</button>
+        <button type="button" data-dk-action="BOOK AN ATELIER FITTING" class="dk-button-book-an-atelier-fitting-1n10tvk dk-motion-layer dk-fx-editorial-slide dk-interactive-btn" style="--dk-delay: 32ms">BOOK AN ATELIER FITTING</button>
+        <button type="button" data-dk-action="EXPLORE CAPSULE ↗" class="dk-button-explore-capsule-1nuwhgi dk-motion-layer dk-fx-3d-tilt dk-interactive-btn" style="--dk-delay: 94ms">EXPLORE CAPSULE ↗</button>
+        <button type="button" data-dk-action="Acquire Piece →" class="dk-button-acquire-piece-1o4w35h dk-motion-layer dk-fx-rise dk-interactive-btn" style="--dk-delay: 168ms">Acquire Piece →</button>
+        <button type="button" data-dk-action="View Campaign Film →" class="dk-button-view-campaign-film-1naxa2k dk-motion-layer dk-fx-curtain dk-interactive-btn" style="--dk-delay: 229ms">View Campaign Film →</button>
+        <button type="button" data-dk-action="View piece" class="dk-button-view-piece-1nkwvrj dk-motion-layer dk-fx-bloom dk-interactive-btn" style="--dk-delay: 295ms">View piece</button>
+        <button type="button" data-dk-action="View piece" class="dk-button-view-piece-1mqy2om dk-motion-layer dk-fx-editorial-slide dk-interactive-btn" style="--dk-delay: 344ms">View piece</button>
+        <button type="button" data-dk-action="Enter the release" class="dk-input-enter-the-release-1n0xodl dk-motion-layer dk-fx-3d-tilt dk-interactive-btn" style="--dk-delay: 387ms">Enter the release</button>
+        <h2 class="dk-a-brand-vanta-1m6yvao dk-motion-layer dk-fx-rise" style="--dk-delay: 1ms">VANTA®</h2>
+        <p class="dk-a-nav-link-available-for-q2-commis-1mgygzn dk-motion-layer dk-fx-curtain" style="--dk-delay: 34ms">[AVAILABLE FOR Q2 COMMISSION · GLOBAL]</p>
+        <p class="dk-a-nav-link-products-about-us-journa-1q2tb0a dk-motion-layer dk-fx-bloom" style="--dk-delay: 66ms">Products     About Us     Journal     Contact</p>
+        <p class="dk-p-index-01-edition-2027-1qcswp9 dk-motion-layer dk-fx-editorial-slide" style="--dk-delay: 103ms">INDEX // 01
+
+EDITION
+2027 AVANT-GARDE
+
+DIRECTION
+ASYMMETRIC
+SPATIAL COLLAGE
+
+ARCHIVE
+VANTA</p>
+        <h1 class="dk-h1-cloth-that-holds-the-roo-tcfv99 dk-motion-layer dk-fx-3d-tilt" style="--dk-delay: 134ms">CLOTH THAT HOLDS THE ROOM.</h1>
+        <p class="dk-p-vanta-is-an-independent-t2g9ka dk-motion-layer dk-fx-rise" style="--dk-delay: 187ms">VANTA is an independent atelier for tailored ready-to-wear — tee, jacket and sunglass cut in small runs, with one senior cutter from first toile to final stitch.</p>
+        <p class="dk-p-01-avant-garde-spatia-ssgnvb dk-motion-layer dk-fx-curtain" style="--dk-delay: 234ms">01 // AVANT-GARDE SPATIAL EXHIBITION</p>
+        <h1 class="dk-h1-deconstructing-silhouett-sih26c dk-motion-layer dk-fx-bloom" style="--dk-delay: 44ms">DECONSTRUCTING SILHOUETTE, VOLUME &amp; KINETIC TENSION.</h1>
+        <p class="dk-h3-archive-capsule-04-s8hghd dk-motion-layer dk-fx-editorial-slide" style="--dk-delay: 89ms">ARCHIVE CAPSULE 04</p>
+        <p class="dk-p-limited-numbered-release-ryhuse dk-motion-layer dk-fx-3d-tilt" style="--dk-delay: 123ms">Limited numbered release featuring raw-edge tailoring and molded rubber footwear.</p>
+        <p class="dk-p-02-sculptural-objects-roi93f dk-motion-layer dk-fx-rise" style="--dk-delay: 169ms">02 / SCULPTURAL OBJECTS &amp; ASYMMETRIC CURATION</p>
+        <h1 class="dk-h1-architectural-footwear-reineg dk-motion-layer dk-fx-curtain" style="--dk-delay: 202ms">Architectural Footwear &amp; Tailored Silhouettes</h1>
+        <p class="dk-span-badge-01-outerwear-r4j1ph dk-motion-layer dk-fx-bloom" style="--dk-delay: 261ms">01 / OUTERWEAR</p>
+        <p class="dk-h3-small-run-12-pieces-qujg0i dk-motion-layer dk-fx-editorial-slide" style="--dk-delay: 293ms">Small run — 12 pieces</p>
+        <h2 class="dk-h2-the-room-jacket-rof3lg dk-motion-layer dk-fx-3d-tilt" style="--dk-delay: 102ms">The Room Jacket</h2>
+        <p class="dk-p-unlined-wool-cashmere-cu-ryepaf dk-motion-layer dk-fx-rise" style="--dk-delay: 137ms">Unlined wool-cashmere cut close to the shoulder, canvassed by hand and finished by the same senior cutter from first toile to final stitch.</p>
+        <p class="dk-p-curatorial-thesis-ever-s8eaze dk-motion-layer dk-fx-curtain" style="--dk-delay: 145ms">CURATORIAL THESIS — Every piece is conceived as a wearable architectural object, balancing structural tension with fluid movement.</p>
+        <p class="dk-span-badge-02-jersey-tees-sidwod dk-motion-layer dk-fx-bloom" style="--dk-delay: 198ms">02 / JERSEY &amp; TEES</p>
+        <p class="dk-h3-restocked-in-three-colou-qkgotk dk-motion-layer dk-fx-editorial-slide" style="--dk-delay: 230ms">Restocked in three colourways</p>
+        <h2 class="dk-h2-atelier-tee-no-1-qugaij dk-motion-layer dk-fx-3d-tilt" style="--dk-delay: 267ms">Atelier Tee No. 1</h2>
+        <p class="dk-p-tubular-knit-long-staple-r4fw7i dk-motion-layer dk-fx-rise" style="--dk-delay: 301ms">Tubular-knit long-staple cotton jersey with a ribbed collar set by hand — the plain layer every jacket in the release is cut against.</p>
+        <p class="dk-p-03-visual-campaign-dip-refhwh dk-motion-layer dk-fx-curtain" style="--dk-delay: 123ms">03 / VISUAL CAMPAIGN DIPTYCH · AUTUMN/WINTER</p>
+        <h2 class="dk-h2-form-shadow-motion-ac-pgia1o dk-motion-layer dk-fx-bloom" data-dk-word-scrub="true" style="--dk-delay: 157ms">Form, Shadow &amp; Motion Across Two Continents.</h2>
+        <p class="dk-p-photographed-on-120mm-me-pqhvqn dk-motion-layer dk-fx-editorial-slide" style="--dk-delay: 193ms">Photographed on 120mm medium format film in Milan and Kyoto. Explore the full 24-look seasonal monograph.</p>
+        <p class="dk-p-04-seasonal-lookbook-1nbf967 dk-motion-layer dk-fx-3d-tilt" style="--dk-delay: 244ms">04 / SEASONAL LOOKBOOK &amp; SILHOUETTES</p>
+        <h1 class="dk-h1-signature-editions-edi-1n1fnh8 dk-motion-layer dk-fx-rise" style="--dk-delay: 277ms">Signature Editions &amp; Editorial Triptych</h1>
+        <p class="dk-span-badge-01-outerwear-1nvegk5 dk-motion-layer dk-fx-curtain" style="--dk-delay: 343ms">01 / OUTERWEAR</p>
+        <h2 class="dk-h2-the-room-jacket-1nleuv6 dk-motion-layer dk-fx-bloom" style="--dk-delay: 376ms">The Room Jacket</h2>
+        <p class="dk-h3-small-run-12-pieces-1m7gueb dk-motion-layer dk-fx-editorial-slide" style="--dk-delay: 184ms">Small run — 12 pieces</p>
+        <p class="dk-span-badge-02-jersey-tees-1lxh8pc dk-motion-layer dk-fx-3d-tilt" style="--dk-delay: 189ms">02 / JERSEY &amp; TEES</p>
+        <h2 class="dk-h2-atelier-tee-no-1-1mrg1s9 dk-motion-layer dk-fx-rise" style="--dk-delay: 222ms">Atelier Tee No. 1</h2>
+        <p class="dk-p-tubular-knit-long-staple-1mhgg3a dk-motion-layer dk-fx-curtain" style="--dk-delay: 258ms">Tubular-knit long-staple cotton jersey with a ribbed collar set by hand — the plain layer every jacket in the release is cut against.</p>
+        <p class="dk-h3-restocked-in-three-colou-1pjc2pz dk-motion-layer dk-fx-bloom" style="--dk-delay: 295ms">Restocked in three colourways</p>
+        <p class="dk-span-badge-03-eyewear-1p9ch10 dk-motion-layer dk-fx-editorial-slide" style="--dk-delay: 334ms">03 / EYEWEAR</p>
+        <h2 class="dk-h2-sable-frame-m4tcpy dk-motion-layer dk-fx-3d-tilt" style="--dk-delay: 367ms">Sable Frame</h2>
+        <p class="dk-p-hand-polished-acetate-fr-mesyex dk-motion-layer dk-fx-rise" style="--dk-delay: 178ms">Hand-polished acetate frame with a thin metal core and a flat charcoal lens, fitted and adjusted in the atelier before it leaves.</p>
+        <p class="dk-h3-edition-of-40-lku5c0 dk-motion-layer dk-fx-curtain" style="--dk-delay: 216ms">Edition of 40</p>
+        <p class="dk-p-ready-for-your-next-ch-lutr0z dk-motion-layer dk-fx-bloom" style="--dk-delay: 257ms">✦  READY FOR YOUR NEXT CHAPTER?</p>
+        <h2 class="dk-h1-book-the-atelier-fitting-n8rrhu dk-motion-layer dk-fx-editorial-slide" style="--dk-delay: 291ms">Book the atelier fitting room.</h2>
+        <div class="dk-p-products-about-us-jo-nird6t dk-motion-layer dk-fx-3d-tilt dk-marquee-strip" style="--dk-delay: 334ms"><div class="dk-marquee-track"><span>Products       ·       About Us       ·       Journal       ·       Contact       |       INSTAGRAM   ·   LINKEDIN   ·   X   •   Products       ·       About Us       ·       Journal       ·       Contact       |       INSTAGRAM   ·   LINKEDIN   ·   X   •   Products       ·       About Us       ·       Journal       ·       Contact       |       INSTAGRAM   ·   LINKEDIN   ·   X</span><span aria-hidden="true">Products       ·       About Us       ·       Journal       ·       Contact       |       INSTAGRAM   ·   LINKEDIN   ·   X   •   Products       ·       About Us       ·       Journal       ·       Contact       |       INSTAGRAM   ·   LINKEDIN   ·   X   •   Products       ·       About Us       ·       Journal       ·       Contact       |       INSTAGRAM   ·   LINKEDIN   ·   X</span></div></div>
+        <h1 class="dk-h3-vanta-mosk3w dk-motion-layer dk-fx-rise" style="--dk-delay: 368ms">VANTA</h1>
+        <div class="dk-p-2027-vanta-all-rights-mys5sv dk-motion-layer dk-fx-curtain dk-marquee-strip" style="--dk-delay: 409ms"><div class="dk-marquee-track"><span>© 2027 VANTA. All rights reserved.   ·   Privacy Policy   ·   Terms of Service   •   © 2027 VANTA. All rights reserved.   ·   Privacy Policy   ·   Terms of Service   •   © 2027 VANTA. All rights reserved.   ·   Privacy Policy   ·   Terms of Service</span><span aria-hidden="true">© 2027 VANTA. All rights reserved.   ·   Privacy Policy   ·   Terms of Service   •   © 2027 VANTA. All rights reserved.   ·   Privacy Policy   ·   Terms of Service   •   © 2027 VANTA. All rights reserved.   ·   Privacy Policy   ·   Terms of Service</span></div></div>
         </div>
-        <button type="button" class="dk-mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
-      </header>
-      <section class="dk-hdr-03-image-left-text-right-8x7g50">
-        <img class="dk-hero-visual-product-preview-16-10-9fjbml" src="https://images.pexels.com/photos/7151031/pexels-photo-7151031.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940" alt="Hero Visual / Product Preview (16:10)" loading="lazy" />
-        <div class="dk-eyebrow-badge-wvxq1l">
-          <p class="dk-eyebrow-1f7ssau">HDR-03 · WIREFRAME</p>
-        </div>
-        <h1 class="dk-hero-title-1ctq6lx">Build faster with Image Left, Text Right</h1>
-        <p class="dk-hero-lead-1450byg">Drag and drop clean prebuilt wireframe sections directly onto your canvas and customize typography, spacing, and design tokens.</p>
-        <button type="button" class="dk-interactive-btn dk-button-start-building-qh7ema" data-dk-action="Start Building →" data-dk-target="#button-start-building">
-          <span class="dk-button-label-152yptq">Start Building →</span>
-        </button>
-        <button type="button" class="dk-interactive-btn dk-button-view-live-demo-8uxesc" data-dk-action="View Live Demo" data-dk-target="#button-view-live-demo">
-          <span class="dk-button-label-1256r70">View Live Demo</span>
-        </button>
-      </section>
-      <section class="dk-lay-04-bento-grid-6-tile-feature-mosaic-7szeig">
-        <h2 class="dk-bento-heading-amjvj2">Bento Grid (6-Tile Feature Mosaic)</h2>
-        <article class="dk-interactive-card dk-bento-hero-tile-59zj8p">
-          <h3 class="dk-tile-1-title-15g54rx">AI Art Director &amp; Design DNA Synthesis</h3>
-          <div class="dk-token-preview-x6kl1">
-            <div class="dk-media-tag-bo30tv">
-              <p class="dk-media-label-imy19c">Token Preview</p>
-            </div>
-          </div>
-          <p class="dk-tile-1-copy-11i6c2y">Generates bespoke typography scales, surface tokens, and layout grammar per brief.</p>
-        </article>
-        <article class="dk-interactive-card dk-bento-top-right-tile-oevch3">
-          <p class="dk-tile-2-kicker-12ndi0r">REAL-TIME TELEMETRY</p>
-          <h1 class="dk-tile-2-value-duh53d">99.98%</h1>
-          <p class="dk-tile-2-desc-wrg7mo">Visual QA pass rate with automated overlap &amp; contrast remediation.</p>
-        </article>
-        <article class="dk-interactive-card dk-bento-bottom-left-tile-1qrx50v">
-          <p class="dk-tile-3-title-54vscp">15 Modular Design Skills</p>
-          <p class="dk-tile-3-copy-1q8b3lg">Specialized engines for Editorial, SaaS, Ecommerce, and Agency layouts.</p>
-        </article>
-        <div class="dk-bento-bottom-right-span-1ws13em">
-          <p class="dk-tile-4-title-18r4pgr">One-Click Responsive Reflow &amp; Code Export</p>
-          <p class="dk-tile-4-copy-102sqft">Export clean React, Tailwind CSS, and vector frames ready for engineering handoff.</p>
-          <button type="button" class="dk-interactive-btn dk-button-try-live-export-1tswalx" data-dk-action="Try Live Export →" data-dk-target="#button-try-live-export">
-            <span class="dk-button-label-1jahcds">Try Live Export →</span>
-          </button>
-        </div>
-      </section>
-      <footer class="dk-ftr-02-four-column-capability-matrix-1kyuulr">
-        <div class="dk-category-badge-7w5bz9">
-          <a href="#ftr-02-preview-01" class="dk-interactive-link dk-category-code-1fdk1br">FTR-02</a>
-        </div>
-        <button type="button" class="dk-interactive-btn dk-button-customize-block-12q3noj" data-dk-action="Customize Block" data-dk-target="#button-customize-block">
-          <span class="dk-button-label-1o1oh7x">Customize Block</span>
-        </button>
-        <h2 class="dk-section-title-1u2ao18">Four-Column Capability Matrix</h2>
-        <p class="dk-section-subtitle-s9pins">Prebuilt Features (FTR) wireframe block — symmetric 64px padding, ready to customize.</p>
-        <article class="dk-interactive-card dk-four-column-capability-matrix-card-1-1iif9w3">
-          <div class="dk-ftr-02-preview-01-127zx93">
-            <div class="dk-media-tag-1ta0p7u">
-              <a href="#ftr-02-preview-01" class="dk-interactive-link dk-media-label-i6499v">FTR-02 Preview 01</a>
-            </div>
-          </div>
-          <p class="dk-card-title-1x26yvv">Four-Column Capability Matrix 01</p>
-          <p class="dk-card-description-1qrrscr">Clean modular wireframe card with balanced hierarchy, symmetric padding, and editable layers.</p>
-          <button type="button" class="dk-interactive-btn dk-button-view-details-12ijbrn" data-dk-action="View Details →" data-dk-target="#button-view-details">
-            <span class="dk-button-label-1cejhd8">View Details →</span>
-          </button>
-        </article>
-        <article class="dk-interactive-card dk-four-column-capability-matrix-card-2-18de1lv">
-          <div class="dk-ftr-02-preview-02-1pcwrjd">
-            <div class="dk-media-tag-2i8i8t">
-              <a href="#ftr-02-preview-02" class="dk-interactive-link dk-media-label-1axje4s">FTR-02 Preview 02</a>
-            </div>
-          </div>
-          <p class="dk-card-title-6zdsp6">Four-Column Capability Matrix 02</p>
-          <p class="dk-card-description-1v84cec">Clean modular wireframe card with balanced hierarchy, symmetric padding, and editable layers.</p>
-          <button type="button" class="dk-interactive-btn dk-button-view-details-1hf8uwm" data-dk-action="View Details →" data-dk-target="#button-view-details">
-            <span class="dk-button-label-qdvxzz">View Details →</span>
-          </button>
-        </article>
-        <article class="dk-interactive-card dk-four-column-capability-matrix-card-3-1lk2f12">
-          <div class="dk-ftr-02-preview-03-10ppwvt">
-            <div class="dk-media-tag-hxp4nt">
-              <a href="#ftr-02-preview-03" class="dk-interactive-link dk-media-label-1yt06ya">FTR-02 Preview 03</a>
-            </div>
-          </div>
-          <p class="dk-card-title-ag1bog">Four-Column Capability Matrix 03</p>
-          <p class="dk-card-description-qy6qrc">Clean modular wireframe card with balanced hierarchy, symmetric padding, and editable layers.</p>
-          <button type="button" class="dk-interactive-btn dk-button-view-details-kg5hfl" data-dk-action="View Details →" data-dk-target="#button-view-details">
-            <span class="dk-button-label-fgqrlx">View Details →</span>
-          </button>
-        </article>
-        <article class="dk-interactive-card dk-four-column-capability-matrix-card-4-10j0iv4">
-          <div class="dk-ftr-02-preview-04-iewftz">
-            <div class="dk-media-tag-asvskc">
-              <a href="#ftr-02-preview-04" class="dk-interactive-link dk-media-label-16iq4xo">FTR-02 Preview 04</a>
-            </div>
-          </div>
-          <p class="dk-card-title-spg0vd">Four-Column Capability Matrix 04</p>
-          <p class="dk-card-description-kprt55">Clean modular wireframe card with balanced hierarchy, symmetric padding, and editable layers.</p>
-          <button type="button" class="dk-interactive-btn dk-button-view-details-hsw5ul" data-dk-action="View Details →" data-dk-target="#button-view-details">
-            <span class="dk-button-label-13jc43y">View Details →</span>
-          </button>
-        </article>
-      </footer>
-      <footer class="dk-ftr-04-numbered-process-steps-01-04-ruhaam">
-        <div class="dk-category-badge-hljj8w">
-          <a href="#ftr-04-preview-01" class="dk-interactive-link dk-category-code-iuxkq">FTR-04</a>
-        </div>
-        <button type="button" class="dk-interactive-btn dk-button-customize-block-1nnq55y" data-dk-action="Customize Block" data-dk-target="#button-customize-block">
-          <span class="dk-button-label-1wenzrj">Customize Block</span>
-        </button>
-        <h2 class="dk-section-title-ft0scf">Numbered Process Steps (01–04)</h2>
-        <p class="dk-section-subtitle-1rsjfbe">Prebuilt Features (FTR) wireframe block — symmetric 64px padding, ready to customize.</p>
-        <article class="dk-interactive-card dk-numbered-process-steps-01-04-card-1-11uxhdn">
-          <div class="dk-ftr-04-preview-01-z30ngk">
-            <div class="dk-media-tag-7qfaea">
-              <a href="#ftr-04-preview-01" class="dk-interactive-link dk-media-label-12gv1cy">FTR-04 Preview 01</a>
-            </div>
-          </div>
-          <p class="dk-card-title-pc67b">Numbered Process Steps (01–04) 01</p>
-          <p class="dk-card-description-1g54gy6">Clean modular wireframe card with balanced hierarchy, symmetric padding, and editable layers.</p>
-          <button type="button" class="dk-interactive-btn dk-button-view-details-1l8zj41" data-dk-action="View Details →" data-dk-target="#button-view-details">
-            <span class="dk-button-label-1g0idvc">View Details →</span>
-          </button>
-        </article>
-        <article class="dk-interactive-card dk-numbered-process-steps-01-04-card-2-1urhkr0">
-          <div class="dk-ftr-04-preview-02-38309v">
-            <div class="dk-media-tag-1czvx2q">
-              <a href="#ftr-04-preview-02" class="dk-interactive-link dk-media-label-1v13xol">FTR-04 Preview 02</a>
-            </div>
-          </div>
-          <p class="dk-card-title-lfrv57">Numbered Process Steps (01–04) 02</p>
-          <p class="dk-card-description-bjus0e">Clean modular wireframe card with balanced hierarchy, symmetric padding, and editable layers.</p>
-          <button type="button" class="dk-interactive-btn dk-button-view-details-1i0h8tj" data-dk-action="View Details →" data-dk-target="#button-view-details">
-            <span class="dk-button-label-1b9mmma">View Details →</span>
-          </button>
-        </article>
-        <article class="dk-interactive-card dk-numbered-process-steps-01-04-card-3-2lslkc">
-          <div class="dk-ftr-04-preview-03-8fcd8t">
-            <div class="dk-media-tag-1ik4j5x">
-              <a href="#ftr-04-preview-03" class="dk-interactive-link dk-media-label-eazb3v">FTR-04 Preview 03</a>
-            </div>
-          </div>
-          <p class="dk-card-title-1vbfhq1">Numbered Process Steps (01–04) 03</p>
-          <p class="dk-card-description-1fs14vx">Clean modular wireframe card with balanced hierarchy, symmetric padding, and editable layers.</p>
-          <button type="button" class="dk-interactive-btn dk-button-view-details-bb81ex" data-dk-action="View Details →" data-dk-target="#button-view-details">
-            <span class="dk-button-label-1w5as8m">View Details →</span>
-          </button>
-        </article>
-        <article class="dk-interactive-card dk-numbered-process-steps-01-04-card-4-bjqifj">
-          <div class="dk-ftr-04-preview-04-ylw2b0">
-            <div class="dk-media-tag-1cwt8mw">
-              <a href="#ftr-04-preview-04" class="dk-interactive-link dk-media-label-yzmhda">FTR-04 Preview 04</a>
-            </div>
-          </div>
-          <p class="dk-card-title-v8gvzm">Numbered Process Steps (01–04) 04</p>
-          <p class="dk-card-description-1irqgo8">Clean modular wireframe card with balanced hierarchy, symmetric padding, and editable layers.</p>
-          <button type="button" class="dk-interactive-btn dk-button-view-details-1ru9oi5" data-dk-action="View Details →" data-dk-target="#button-view-details">
-            <span class="dk-button-label-1tdp13t">View Details →</span>
-          </button>
-        </article>
-      </footer>
+      </div>
     </section>
   </main>
   <script>
     (function () {
-      // 0. Multi-Page Artboard Router (Home, About, Contact, Pricing, Services, etc.)
+      // 0. Responsive Artboard Stage Scaler (Desktop, Tablet, Mobile — Zero Horizontal Overflow)
+      function updateResponsiveArtboardScale() {
+        var rootFrames = document.querySelectorAll('[data-dk-root-frame="true"]');
+        var vw = Math.max(320, document.documentElement.clientWidth || window.innerWidth || 1280);
+        rootFrames.forEach(function (rf) {
+          if (rf.style.display === 'none') return;
+          var designW = parseFloat(rf.getAttribute('data-design-width') || '1440') || 1440;
+          var designH = parseFloat(rf.getAttribute('data-design-height') || '900') || 900;
+          var scaler = rf.querySelector('.dk-artboard-scaler');
+          var stage = rf.querySelector('.dk-artboard-stage');
+          if (!scaler || !stage) return;
+          var containerW = rf.clientWidth || vw;
+          var scale = containerW < designW ? containerW / designW : (containerW > designW * 1.02 ? Math.min(1.18, containerW / designW) : 1);
+          if (containerW <= designW) {
+            scale = containerW / designW;
+          } else {
+            scale = 1;
+          }
+          var scaledW = Math.round(designW * scale);
+          var scaledH = Math.round(designH * scale);
+          scaler.style.width = scaledW + 'px';
+          scaler.style.height = scaledH + 'px';
+          stage.style.width = designW + 'px';
+          stage.style.height = designH + 'px';
+          stage.style.transform = 'scale(' + scale.toFixed(5) + ')';
+          stage.style.transformOrigin = 'top left';
+        });
+      }
+
+      // 1. Multi-Page Artboard Router (Home, About, Contact, Pricing, Services, etc.)
       var rootFrames = Array.prototype.slice.call(document.querySelectorAll('[data-dk-root-frame="true"]'));
       function cleanPageKey(str) {
         return String(str || '')
@@ -2567,7 +1847,7 @@ html, body {
       function findMatchingRootFrame(label) {
         if (rootFrames.length <= 1) return null;
         var key = cleanPageKey(label);
-        if (!key) return null;
+        if (!key || key.length > 36) return null;
         for (var i = 0; i < rootFrames.length; i++) {
           var rf = rootFrames[i];
           var fname = cleanPageKey(rf.getAttribute('data-frame-name') || rf.id || '');
@@ -2582,6 +1862,7 @@ html, body {
         rootFrames.forEach(function (rf) {
           rf.style.display = rf === targetFrame ? '' : 'none';
         });
+        updateResponsiveArtboardScale();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (pushHash && targetFrame.id) {
           try { history.replaceState(null, '', '#' + targetFrame.id); } catch (e) {}
@@ -2599,33 +1880,138 @@ html, body {
         }
       }
 
-      // 1. Mobile Navigation Drawer Toggle
-      document.querySelectorAll('.dk-mobile-menu-btn').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var nav = btn.closest('[data-dk-navbar="true"]');
-          if (!nav) return;
-          var isOpen = nav.classList.toggle('dk-mobile-nav-open');
-          btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
+      updateResponsiveArtboardScale();
+      window.addEventListener('resize', updateResponsiveArtboardScale, { passive: true });
+      window.addEventListener('orientationchange', updateResponsiveArtboardScale, { passive: true });
+
+      // 2. Scroll-Reveal, Word-Scrub Illumination, Parallax Images, Spinning Emblems & Marquee Velocity
+      var motionLayers = Array.prototype.slice.call(document.querySelectorAll('.dk-motion-layer'));
+      if ('IntersectionObserver' in window && motionLayers.length > 0) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('dk-motion-visible');
+            }
+          });
+        }, { rootMargin: '0px 0px -24px 0px', threshold: 0.05 });
+        motionLayers.forEach(function (el) { io.observe(el); });
+      } else {
+        motionLayers.forEach(function (el) { el.classList.add('dk-motion-visible'); });
+      }
+
+      // Split editorial scrub blocks into individual animated words (.dk-scrub-word)
+      var scrubBlocks = Array.prototype.slice.call(document.querySelectorAll('[data-dk-word-scrub="true"]'));
+      scrubBlocks.forEach(function (block) {
+        if (block.getAttribute('data-scrub-ready') === '1') return;
+        var raw = block.textContent || '';
+        var tokens = raw.split(/(\s+)/);
+        if (tokens.length < 5) return;
+        block.setAttribute('data-scrub-ready', '1');
+        var htmlOut = '';
+        var wIdx = 0;
+        for (var i = 0; i < tokens.length; i++) {
+          var tk = tokens[i];
+          if (/^\s+$/.test(tk)) {
+            htmlOut += tk;
+          } else if (tk) {
+            htmlOut += '<span class="dk-scrub-word" data-word-idx="' + wIdx + '">' + tk.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+            wIdx++;
+          }
+        }
+        block.innerHTML = htmlOut;
       });
 
-      // 2. Sticky Navbar Scroll State
-      function updateStickyNavbars() {
-        var scrolled = (window.scrollY || window.pageYOffset || 0) > 10;
+      var parallaxImages = Array.prototype.slice.call(document.querySelectorAll('.dk-layer-image'));
+      var spinEmblems = Array.prototype.slice.call(document.querySelectorAll('.dk-spin-emblem'));
+      var marqueeTracks = Array.prototype.slice.call(document.querySelectorAll('.dk-marquee-track'));
+      var lastScrollY = window.scrollY || window.pageYOffset || 0;
+      var scrollTicking = false;
+
+      function updateKineticScrollEffects() {
+        scrollTicking = false;
+        var sy = window.scrollY || window.pageYOffset || 0;
+        var vh = Math.max(360, window.innerHeight || 800);
+        var velocity = Math.min(28, Math.abs(sy - lastScrollY));
+        lastScrollY = sy;
+
+        // A. Sticky Navbar State
+        var scrolled = sy > 10;
         document.querySelectorAll('.dk-sticky-navbar, [data-dk-navbar="true"]').forEach(function (nav) {
           if (scrolled) nav.classList.add('dk-navbar-scrolled');
           else nav.classList.remove('dk-navbar-scrolled');
         });
-      }
-      updateStickyNavbars();
-      window.addEventListener('scroll', updateStickyNavbars, { passive: true });
 
-      // 3. Staggered Entrance Micro-Animations
-      var animTargets = document.querySelectorAll('.dk-root-frame > *');
-      animTargets.forEach(function (el, idx) {
-        if (el.classList.contains('dk-sticky-navbar')) return;
-        el.style.setProperty('--dk-delay', Math.min(idx * 35, 420) + 'ms');
-        el.classList.add('dk-animate-in');
+        // B. Word-by-word Editorial Scroll Illumination (NIRA 00:06 / 00:14 effect)
+        scrubBlocks.forEach(function (block) {
+          var rect = block.getBoundingClientRect();
+          var words = block.querySelectorAll('.dk-scrub-word');
+          if (!words.length) return;
+          // Progress 0 when block top is at 88% viewport height, 1 when block center reaches 38% viewport height
+          var startY = vh * 0.88;
+          var endY = vh * 0.28;
+          var progress = (startY - rect.top) / Math.max(120, startY - endY);
+          progress = Math.max(0, Math.min(1, progress));
+          var total = words.length;
+          for (var i = 0; i < total; i++) {
+            var wordThreshold = (i / Math.max(1, total)) * 0.86;
+            var wordAlpha = Math.max(0.2, Math.min(1, (progress - wordThreshold) / 0.18));
+            words[i].style.opacity = wordAlpha.toFixed(3);
+            words[i].style.transform = wordAlpha >= 0.96 ? 'translate3d(0,0,0)' : 'translate3d(0,' + ((1 - wordAlpha) * 4).toFixed(1) + 'px,0)';
+          }
+        });
+
+        // C. Smooth Vertical Parallax & Scale on Image Windows
+        parallaxImages.forEach(function (imgWrap, idx) {
+          var rect = imgWrap.getBoundingClientRect();
+          if (rect.bottom < -80 || rect.top > vh + 80) return;
+          var centerOffset = (rect.top + rect.height * 0.5 - vh * 0.5) / (vh * 0.65);
+          var clamped = Math.max(-1, Math.min(1, centerOffset));
+          var dir = idx % 2 === 0 ? -1 : 1;
+          var shiftY = (clamped * 14 * dir).toFixed(2);
+          var imgEl = imgWrap.querySelector('.dk-stage-img');
+          if (imgEl) {
+            imgEl.style.setProperty('--dk-parallax-y', shiftY + 'px');
+          }
+        });
+
+        // D. Scroll-Linked Rotating Circular Emblems / Badges ("RETURN • REFILL • REPEAT")
+        spinEmblems.forEach(function (emblem, idx) {
+          var dir = idx % 2 === 0 ? 1 : -1;
+          var deg = (sy * 0.22 * dir) % 360;
+          emblem.style.setProperty('--dk-spin-deg', deg.toFixed(1) + 'deg');
+        });
+
+        // E. Subtle Scroll-Velocity Boost on Infinite Marquee Strips
+        var durScale = velocity > 4 ? Math.max(0.55, 1 - velocity * 0.015) : 1;
+        marqueeTracks.forEach(function (tr) {
+          tr.style.setProperty('--dk-marquee-rate', durScale.toFixed(2));
+        });
+      }
+
+      function onWindowScroll() {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          window.requestAnimationFrame(updateKineticScrollEffects);
+        }
+      }
+      updateKineticScrollEffects();
+      window.addEventListener('scroll', onWindowScroll, { passive: true });
+      window.addEventListener('resize', onWindowScroll, { passive: true });
+
+      // 3. 3D Magnetic Hover Tilt on Cards & Interactive Ritual Step Highlighting
+      document.querySelectorAll('.dk-layer-card, .dk-step-item').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var r = card.getBoundingClientRect();
+          if (!r.width || !r.height) return;
+          var nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+          var ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+          card.style.setProperty('--dk-tilt-x', (-ny * 2.4).toFixed(2) + 'deg');
+          card.style.setProperty('--dk-tilt-y', (nx * 2.4).toFixed(2) + 'deg');
+        });
+        card.addEventListener('mouseleave', function () {
+          card.style.setProperty('--dk-tilt-x', '0deg');
+          card.style.setProperty('--dk-tilt-y', '0deg');
+        });
       });
 
       // 4. Toast Notification Helper
@@ -2645,11 +2031,18 @@ html, body {
         }, 2600);
       }
 
-      // 5. Interactive Buttons & Multi-Page Navigation Links
+      // 5. Interactive Buttons, Ritual Steps & Multi-Page Navigation Links
       document.addEventListener('click', function (e) {
-        var link = e.target && e.target.closest ? e.target.closest('a.dk-interactive-link, [data-dk-navbar="true"] a, [data-dk-navbar="true"] span, [data-dk-navbar="true"] p') : null;
+        var stepItem = e.target && e.target.closest ? e.target.closest('.dk-step-item') : null;
+        if (stepItem) {
+          var siblings = stepItem.parentElement ? stepItem.parentElement.querySelectorAll('.dk-step-item') : [];
+          siblings.forEach(function (s) { s.classList.remove('dk-step-active'); });
+          stepItem.classList.add('dk-step-active');
+        }
+
+        var link = e.target && e.target.closest ? e.target.closest('a.dk-interactive-link, [data-dk-nav-link="true"]') : null;
         if (link) {
-          var linkText = (link.textContent || '').trim();
+          var linkText = (link.getAttribute('data-dk-nav-target') || link.textContent || '').trim();
           var matchedPageFrame = findMatchingRootFrame(linkText);
           if (matchedPageFrame) {
             e.preventDefault();
@@ -2658,7 +2051,7 @@ html, body {
           }
           var href = link.getAttribute ? (link.getAttribute('href') || '') : '';
           if (href && !href.startsWith('#') && !/^https?:\/\//i.test(href)) {
-            return; // allow normal multi-page .html file navigation (e.g. about.html, contact.html)
+            return;
           }
           if (href.startsWith('#')) {
             e.preventDefault();

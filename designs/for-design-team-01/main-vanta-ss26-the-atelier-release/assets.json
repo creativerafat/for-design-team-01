@@ -1,0 +1,157 @@
+{
+  "version": "1.0.0",
+  "meta": {
+    "sectionName": "main — VANTA — SS26 The Atelier Release",
+    "sourceFrameName": "main — VANTA — SS26 The Atelier Release",
+    "projectId": "file-1793804223377",
+    "generatedAt": "2026-11-26T10:04:29.310Z",
+    "assetFolder": "assets/",
+    "totalAssets": 12
+  },
+  "assets": [
+    {
+      "name": "img (Hero / Experimental Pr)",
+      "layerId": "ai_wf_node_1795607274122_62225_14",
+      "kind": "image",
+      "originalSize": {
+        "width": 540,
+        "height": 420,
+        "estimatedBytes": 102060
+      },
+      "sourceUrl": "https://images.pexels.com/photos/3414716/pexels-photo-3414716.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-hero-experimental-pr.png"
+    },
+    {
+      "name": "img (Hero / Experimental Se)",
+      "layerId": "ai_wf_node_1795607274122_62225_15",
+      "kind": "image",
+      "originalSize": {
+        "width": 360,
+        "height": 270,
+        "estimatedBytes": 43740
+      },
+      "sourceUrl": "https://images.pexels.com/photos/4614224/pexels-photo-4614224.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-hero-experimental-se.png"
+    },
+    {
+      "name": "img (Experimental Collage /)",
+      "layerId": "ai_wf_node_1795607274122_62225_18",
+      "kind": "image",
+      "originalSize": {
+        "width": 360,
+        "height": 170,
+        "estimatedBytes": 27540
+      },
+      "sourceUrl": "https://images.pexels.com/photos/18767178/pexels-photo-18767178.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-experimental-collage.png"
+    },
+    {
+      "name": "img (Experimental Collage /)",
+      "layerId": "ai_wf_node_1795607274122_62225_17",
+      "kind": "image",
+      "originalSize": {
+        "width": 340,
+        "height": 330,
+        "estimatedBytes": 50490
+      },
+      "sourceUrl": "https://images.pexels.com/photos/13211184/pexels-photo-13211184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-experimental-collage-2.png"
+    },
+    {
+      "name": "img (Experimental Collage /)",
+      "layerId": "ai_wf_node_1795607274122_62225_16",
+      "kind": "image",
+      "originalSize": {
+        "width": 380,
+        "height": 290,
+        "estimatedBytes": 49590
+      },
+      "sourceUrl": "https://images.pexels.com/photos/36397420/pexels-photo-36397420.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-experimental-collage-3.png"
+    },
+    {
+      "name": "img (Asymmetric / Feature 0)",
+      "layerId": "ai_wf_node_1795607274122_62225_19",
+      "kind": "image",
+      "originalSize": {
+        "width": 662,
+        "height": 360,
+        "estimatedBytes": 107244
+      },
+      "sourceUrl": "https://images.pexels.com/photos/36397420/pexels-photo-36397420.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-asymmetric-feature-0.png"
+    },
+    {
+      "name": "img (Asymmetric / Feature 0)",
+      "layerId": "ai_wf_node_1795607274122_62225_20",
+      "kind": "image",
+      "originalSize": {
+        "width": 482,
+        "height": 290,
+        "estimatedBytes": 62901
+      },
+      "sourceUrl": "https://images.pexels.com/photos/4614224/pexels-photo-4614224.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-asymmetric-feature-0-2.png"
+    },
+    {
+      "name": "img (Campaign Diptych / Lef)",
+      "layerId": "ai_wf_node_1795607274122_62225_21",
+      "kind": "image",
+      "originalSize": {
+        "width": 720,
+        "height": 560,
+        "estimatedBytes": 181440
+      },
+      "sourceUrl": "https://images.pexels.com/photos/13211184/pexels-photo-13211184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-campaign-diptych-lef.png"
+    },
+    {
+      "name": "img (Campaign Diptych / Rig)",
+      "layerId": "ai_wf_node_1795607274122_62225_22",
+      "kind": "image",
+      "originalSize": {
+        "width": 720,
+        "height": 560,
+        "estimatedBytes": 181440
+      },
+      "sourceUrl": "https://images.pexels.com/photos/18767178/pexels-photo-18767178.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-campaign-diptych-rig.png"
+    },
+    {
+      "name": "img (Lookbook / Plate 01 Ta)",
+      "layerId": "ai_wf_node_1795607274122_62225_23",
+      "kind": "image",
+      "originalSize": {
+        "width": 584,
+        "height": 502,
+        "estimatedBytes": 131926
+      },
+      "sourceUrl": "https://images.pexels.com/photos/36397420/pexels-photo-36397420.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-lookbook-plate-01-ta.png"
+    },
+    {
+      "name": "img (Lookbook / Plate 02 Ph)",
+      "layerId": "ai_wf_node_1795607274122_62225_24",
+      "kind": "image",
+      "originalSize": {
+        "width": 260,
+        "height": 254,
+        "estimatedBytes": 29718
+      },
+      "sourceUrl": "https://images.pexels.com/photos/4614224/pexels-photo-4614224.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-lookbook-plate-02-ph.png"
+    },
+    {
+      "name": "img (Lookbook / Plate 03 Ph)",
+      "layerId": "ai_wf_node_1795607274122_62225_25",
+      "kind": "image",
+      "originalSize": {
+        "width": 260,
+        "height": 254,
+        "estimatedBytes": 29718
+      },
+      "sourceUrl": "https://images.pexels.com/photos/13211184/pexels-photo-13211184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "exportedPath": "assets/img-lookbook-plate-03-ph.png"
+    }
+  ]
+}

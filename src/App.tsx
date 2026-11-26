@@ -6,13 +6,13 @@
  */
 import React from 'react';
 import './styles.css';
-import { MainDesktopBrowser1440Artboard } from './components/MainDesktopBrowser1440Artboard';
+import { MainVantaSs26TheAtelierRelease } from './components/MainVantaSs26TheAtelierRelease';
 
 export function App() {
   return (
     <div className="dk-app-root">
-      {/* Section / Page Component: MainDesktopBrowser1440Artboard */}
-      <MainDesktopBrowser1440Artboard />
+      {/* Section / Page Component: MainVantaSs26TheAtelierRelease */}
+      <MainVantaSs26TheAtelierRelease />
     </div>
   );
 }
